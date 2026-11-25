@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-BaseGeometry = __import__('6-base_geometry').BaseGeometry
+"""Defines a class BaseGeometry."""
 
-bg = BaseGeometry()
 
-try:
-    print(bg.area())
-except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
+class BaseGeometry:
+    """Represents base geometry."""
+
+    def area(self):
+        """Raise an Exception indicating area is not implemented."""
+        raise Exception("area() is not implemented")
