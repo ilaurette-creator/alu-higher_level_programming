@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """
 Module rectangle
-Defines the Rectangle class that inherits from Base with attribute validation,
-area calculation, and display functionality.
+Defines the Rectangle class that inherits from Base.
 """
 from models.base import Base
 
@@ -93,7 +92,31 @@ class Rectangle(Base):
 
     def display(self):
         """
-        Prints in stdout the Rectangle instance with the character #.
+        Prints in stdout the Rectangle instance with the character #
+        taking into account x and y coordinates.
         """
+        print("\n" * self.__y, end="")
         for _ in range(self.__height):
-            print("#" * self.__width)
+            print(" " * self.__x + "#" * self.__width)
+
+    def __str__(self):
+        """
+        Returns the string representation of the Rectangle instance.
+        """
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id, self.__x, self.__y, self.__width, self.__height
+        )
+
+    def update(self, *args):
+        """
+        Assigns arguments to attributes in positional order:
+        1st argument: id
+        2nd argument: width
+        3rd argument: height
+        4th argument: x
+        5th argument: y
+        """
+        attrs = ["id", "width", "height", "x", "y"]
+        for i, arg in enumerate(args):
+            if i < len(attrs):
+                setattr(self, attrs[i], arg)
