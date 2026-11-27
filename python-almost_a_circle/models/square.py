@@ -33,7 +33,6 @@ class Square(Rectangle):
         """
         Setter for size.
         Assigns width and height in order with the same value.
-        Validation is inherited from Rectangle's width setter.
         """
         self.width = value
         self.height = value
@@ -50,7 +49,7 @@ class Square(Rectangle):
         """
         Assigns attributes to Square instance:
         - *args: 1st=id, 2nd=size, 3rd=x, 4th=y
-        - **kwargs: key/value pairs (skipped if *args exists and non-empty)
+        - **kwargs: key/value pairs (skipped if *args exists & non-empty)
         """
         if args and len(args) != 0:
             attrs = ["id", "size", "x", "y"]
@@ -61,3 +60,14 @@ class Square(Rectangle):
             for key, value in kwargs.items():
                 if hasattr(self, key):
                     setattr(self, key, value)
+
+    def to_dictionary(self):
+        """
+        Returns the dictionary representation of a Square.
+        """
+        return {
+            'id': self.id,
+            'size': self.size,
+            'x': self.x,
+            'y': self.y
+        }
