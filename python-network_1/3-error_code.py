@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Sends a request to a URL and displays the response body or HTTP error code"""
+"""
+Script that takes in a URL, sends a request to the URL
+and displays the body of the response (decoded in utf-8).
+"""
 import sys
 import urllib.error
 import urllib.request
@@ -10,6 +13,6 @@ if __name__ == "__main__":
     req = urllib.request.Request(url)
     try:
         with urllib.request.urlopen(req) as response:
-            print(response.read().decode("utf-8"))
+            print(response.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
-        print(f"Error code: {e.code}")
+        print("Error code: {}".format(e.code))
