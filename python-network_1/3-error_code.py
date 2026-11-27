@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Script that takes in a URL, sends a request to the URL
-and displays the body of the response (decoded in utf-8).
+Script that takes in a URL, sends a request to the URL, and displays
+the body of the response, handling HTTP error exceptions.
 """
 import sys
 import urllib.error
