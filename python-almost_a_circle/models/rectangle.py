@@ -107,16 +107,18 @@ class Rectangle(Base):
             self.id, self.__x, self.__y, self.__width, self.__height
         )
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """
-        Assigns arguments to attributes in positional order:
-        1st argument: id
-        2nd argument: width
-        3rd argument: height
-        4th argument: x
-        5th argument: y
+        Assigns arguments to attributes:
+        - *args: positional arguments (id, width, height, x, y)
+        - **kwargs: key/value arguments (skipped if *args exists)
         """
-        attrs = ["id", "width", "height", "x", "y"]
-        for i, arg in enumerate(args):
-            if i < len(attrs):
-                setattr(self, attrs[i], arg)
+        if args and len(args) != 0:
+            attrs = ["id", "width", "height", "x", "y"]
+            for i, arg in enumerate(args):
+                if i < len(attrs):
+                    setattr(self, attrs[i], arg)
+        elif kwargs and len(kwargs) != 0:
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)
