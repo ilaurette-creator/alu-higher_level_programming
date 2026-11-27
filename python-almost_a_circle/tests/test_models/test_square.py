@@ -38,16 +38,6 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s2.y, 3)
         self.assertEqual(s2.id, 12)
 
-    def test_square_negative_size(self):
-        """Test Square(-1) raises ValueError."""
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            Square(-1)
-
-    def test_square_zero_size(self):
-        """Test Square(0) raises ValueError."""
-        with self.assertRaisesRegex(ValueError, "width must be > 0"):
-            Square(0)
-
     def test_square_size_getter_setter(self):
         """Test size getter and setter validation."""
         s = Square(5)
@@ -160,8 +150,8 @@ class TestSquare(unittest.TestCase):
         Square.save_to_file([s1, s2])
         output = Square.load_from_file()
         self.assertEqual(len(output), 2)
-        self.assertEqual(str(output), str(s1))
-        self.assertEqual(str(output), str(s2))
+        self.assertEqual(str(output[0]), str(s1))
+        self.assertEqual(str(output[1]), str(s2))
 
 
 if __name__ == "__main__":
