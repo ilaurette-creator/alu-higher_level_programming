@@ -1,0 +1,43 @@
+The ``5-text_indentation`` module
+=================================
+
+Using ``text_indentation``
+--------------------------
+
+Importing the function:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Valid text with delimiters:
+    >>> text_indentation("Hello. World? Testing: Done")
+    Hello.
+    <BLANKLINE>
+    World?
+    <BLANKLINE>
+    Testing:
+    <BLANKLINE>
+    Done
+
+Leading and trailing spaces around delimiters:
+    >>> text_indentation("  Holberton.   School?  ")
+    Holberton.
+    <BLANKLINE>
+    School?
+    <BLANKLINE>
+
+Non-string argument (integer):
+    >>> text_indentation(12)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Non-string argument (None):
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Missing argument:
+    >>> text_indentation()
+    Traceback (most recent call last):
+        ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'
