@@ -66,8 +66,26 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r2.area(), 20)
         self.assertEqual(r3.area(), 56)
 
-    def test_display(self):
-        """Test display method accounting for x and y."""
+    def test_display_without_x_y(self):
+        """Test display() without x and y."""
+        r = Rectangle(2, 3)
+        captured = io.StringIO()
+        sys.stdout = captured
+        r.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(captured.getvalue(), "##\n##\n##\n")
+
+    def test_display_without_y(self):
+        """Test display() with x but without y."""
+        r = Rectangle(2, 3, 2)
+        captured = io.StringIO()
+        sys.stdout = captured
+        r.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(captured.getvalue(), "  ##\n  ##\n  ##\n")
+
+    def test_display_with_x_y(self):
+        """Test display() with both x and y."""
         r = Rectangle(2, 3, 2, 2)
         captured = io.StringIO()
         sys.stdout = captured
@@ -140,8 +158,8 @@ class TestRectangle(unittest.TestCase):
         Rectangle.save_to_file([r1, r2])
         output = Rectangle.load_from_file()
         self.assertEqual(len(output), 2)
-        self.assertEqual(str(output[0]), str(r1))
-        self.assertEqual(str(output[1]), str(r2))
+        self.assertEqual(str(output), str(r1))
+        self.assertEqual(str(output), str(r2))
 
 
 if __name__ == "__main__":
